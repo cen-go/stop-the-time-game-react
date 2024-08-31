@@ -46,7 +46,7 @@ export default ResultModal;
 // properties and methods that should be accessible on this component here
 // from outside this component
 
-// useImperativeHandle works wirh the ref forwarded from parent component
+// useImperativeHandle works with the ref forwarded from parent component
 
 
 // with createPortal we can inject the component in places in html 
