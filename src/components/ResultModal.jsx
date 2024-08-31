@@ -1,4 +1,5 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
+import { createPortal } from "react-dom";
 
 const ResultModal = forwardRef(function ResultModal(
   { targetTime, timeRemaining, onReset },
@@ -18,7 +19,7 @@ const ResultModal = forwardRef(function ResultModal(
     };
   });
 
-  return (
+  return createPortal(
     <dialog className="result-modal" ref={dialog} onClose={onReset}>
       {userLost && <h2>You lost</h2>}
       {!userLost && <h2>Your Score: {score}</h2>}
@@ -34,7 +35,8 @@ const ResultModal = forwardRef(function ResultModal(
       <form method="dialog" onSubmit={onReset} >
         <button>Close</button>
       </form>
-    </dialog>
+    </dialog>,
+    document.getElementById("modal")
   );
 });
 
@@ -45,3 +47,9 @@ export default ResultModal;
 // from outside this component
 
 // useImperativeHandle works wirh the ref forwarded from parent component
+
+
+// with createPortal we can inject the component in places in html 
+// we choose different than the place we used the componenet in
+// jsx code. create portal takes jsx element as the first argument
+// and target dom node as the second argument.
